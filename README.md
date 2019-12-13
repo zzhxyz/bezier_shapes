@@ -35,7 +35,7 @@ xn yn rn en
 ```
 
 - ```n_ctrl_pts``` is the actual number of points you control on the shape. Each such point is joined with the next one using a cubic Bezier curve
-- ```n_splg_pts``` is the number of sampling points between two control points
+- ```n_splg_pts``` is the number of sampling points per unit of distance between two control points
 - ```xi yi``` are the coordinates of the control points
 - ```ri``` is the local radius around control point ```i```. It measures how far the local control points are from the point you provided
 - ```ei``` is a local measure of sharpness
