@@ -2,7 +2,7 @@
 import os
 import random
 import shutil
-from datetime import datetime
+from   datetime import datetime
 
 # Imports with probable installation required
 try:
@@ -19,7 +19,7 @@ from python_tools.meshes.meshes_utils import *
 ### ************************************************
 ### Generate full dataset
 # Parameters
-n_sampling_pts = 30
+n_sampling_pts = 5
 mesh_domain    = False
 plot_pts       = True
 n_shapes       = 200

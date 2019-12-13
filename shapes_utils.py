@@ -129,7 +129,6 @@ class Shape:
             pt_p = control_pts[nxt,:]
 
             # Compute delta vector
-            #diff       = 0.5*([-pt_c[1],pt_c[0]] + diff)#Other option
             diff         = pt_p - pt_m
             diff         = diff/np.linalg.norm(diff)
             delta[crt,:] = diff
@@ -138,8 +137,9 @@ class Shape:
             delta_b[crt,:] = 0.5*(pt_m + pt_p) - pt_c
 
             # Compute radii
-            dist         = compute_distance(pt_m, pt_p)
+            dist         = compute_distance(pt_m, pt_c)
             radii[crt,0] = 0.5*dist*radius[crt]
+            dist         = compute_distance(pt_c, pt_p)
             radii[crt,1] = 0.5*dist*radius[crt]
 
         # Generate curves
@@ -148,6 +148,8 @@ class Shape:
             nxt  = (i+1)%self.n_control_pts
             pt_c = control_pts[crt,:]
             pt_p = control_pts[nxt,:]
+            dist = compute_distance(pt_c, pt_p)
+            smpl = self.n_sampling_pts*dist
 
             local_curve = generate_bezier_curve(pt_c,           pt_p,
                                                 delta[crt,:],   delta[nxt,:],
@@ -184,10 +186,10 @@ class Shape:
         show_quadrants = kwargs.get('show_quadrants', False)
         max_radius     = kwargs.get('max_radius',     1.0)
         min_radius     = kwargs.get('min_radius',     0.2)
-        xmin           = kwargs.get('xmin',          -5.0)
-        xmax           = kwargs.get('xmax',           5.0)
-        ymin           = kwargs.get('ymin',          -5.0)
-        ymax           = kwargs.get('ymax',           5.0)
+        xmin           = kwargs.get('xmin',          -1.0)
+        xmax           = kwargs.get('xmax',           1.0)
+        ymin           = kwargs.get('ymin',          -1.0)
+        ymax           = kwargs.get('ymax',           1.0)
 
         # Plot shape
         plt.xlim([xmin,xmax])
@@ -312,18 +314,16 @@ class Shape:
     def mesh(self, *args, **kwargs):
         # Handle optional argument
         mesh_domain = kwargs.get('mesh_domain', False)
-        xmin        = kwargs.get('xmin',       -5.0)
-        xmax        = kwargs.get('xmax',        5.0)
-        ymin        = kwargs.get('ymin',       -5.0)
-        ymax        = kwargs.get('ymax',        5.0)
-        shape_h     = kwargs.get('shape_h',     1.0)
-        domain_h    = kwargs.get('domain_h',    2.0)
+        xmin        = kwargs.get('xmin',       -1.0)
+        xmax        = kwargs.get('xmax',        1.0)
+        ymin        = kwargs.get('ymin',       -1.0)
+        ymax        = kwargs.get('ymax',        1.0)
+        domain_h    = kwargs.get('domain_h',    1.0)
         mesh_format = kwargs.get('mesh_format', 'mesh')
 
         # Convert curve to polygon
         geom      = pygmsh.built_in.Geometry()
         poly      = geom.add_polygon(self.curve_pts,
-                                     shape_h,
                                      make_surface=not mesh_domain)
 
         # Mesh domain if necessary

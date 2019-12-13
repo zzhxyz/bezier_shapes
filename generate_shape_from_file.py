@@ -1,7 +1,6 @@
 # Generic imports
 import os
 import sys
-import matplotlib.pyplot as plt
 
 # Imports with probable installation required
 try:
@@ -35,4 +34,3 @@ shape.read_csv(filename)
 shape.generate(ccws=True)
 shape.mesh()
 shape.generate_image(plot_pts=True)
-#shape.write_csv()
