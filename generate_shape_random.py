@@ -5,7 +5,7 @@ from shapes_utils import *
 ### Generate a random shape from given inputs
 filename       = 'shape'
 n_pts          = 6
-n_sampling_pts = 20
+n_sampling_pts = 50
 plot_pts       = True
 mesh_domain    = True
 magnify        = 1.0

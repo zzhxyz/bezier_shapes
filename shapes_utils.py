@@ -149,14 +149,14 @@ class Shape:
             pt_c = control_pts[crt,:]
             pt_p = control_pts[nxt,:]
             dist = compute_distance(pt_c, pt_p)
-            smpl = self.n_sampling_pts*dist
+            smpl = math.ceil(self.n_sampling_pts*math.sqrt(dist))
 
             local_curve = generate_bezier_curve(pt_c,           pt_p,
                                                 delta[crt,:],   delta[nxt,:],
                                                 delta_b[crt,:], delta_b[nxt,:],
                                                 radii[crt,1],   radii[nxt,0],
                                                 edgy[crt],      edgy[nxt],
-                                                self.n_sampling_pts)
+                                                smpl)
             local_curves.append(local_curve)
 
         curve          = np.concatenate([c for c in local_curves])
