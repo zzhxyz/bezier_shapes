@@ -2,6 +2,10 @@
 
 Tools to generate random shapes using Bezier curves (images and meshes), controlling the number of points and the local curvature and sharpness. It is also possible to generate shapes by joining specified points using an in-house csv format, and to generate full sets of random shapes with variable parameters.
 
+<p align="center">
+  <img width="430" alt="" src="https://user-images.githubusercontent.com/44053700/70312990-0413ae80-1815-11ea-8bbd-2734fb81a668.png">
+</p>
+
 ## Requirements
 
 - ```gmsh``` is required for the meshing of the shapes. Simplest way is to download an executable from http://gmsh.info/ on your computer, and to add its position to your ```PATH```
@@ -10,8 +14,9 @@ Tools to generate random shapes using Bezier curves (images and meshes), control
 
 ## Citation
 
-This work was elaborated on the basis of this StackOverflow answer: https://stackoverflow.com/a/50751932/3237302
-This work was originally intended for this paper: https://arxiv.org/abs/1910.13532. If you make use of this repo for your research, please consider citing it.
+It was originally intended for this paper: https://arxiv.org/abs/1910.13532. If you make use of this repo for your research, please consider citing it.
+
+This work was elaborated on the basis of this StackOverflow answer: https://stackoverflow.com/a/50751932/3237302, although there are now significant differences in behavior and features.
 
 ## Issues
 
